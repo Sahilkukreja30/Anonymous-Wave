@@ -3,6 +3,8 @@ import UserModel from "@/model/userModel";
 import bcryptjs from "bcryptjs"
 import { sendVerificationEmail } from "@/helper/sendVerificationEmail";
 import { NextRequest } from "next/server";
+import { sendEmail } from "@/helper/mailer";
+
 
 // connectDb()
 
@@ -64,19 +66,13 @@ export async function POST(request: NextRequest){
         }
         
         //send verification email
-        const response = await sendVerificationEmail(
+        const response = await sendEmail(
             email,
             username,
             verifyCode
         )
-        if(!response.success){
-            return Response.json({
-                success: false,
-                message: response.message
-            },{
-                status:500
-            })
-        }
+        console.log(response);
+        
         return Response.json({
             success: true,
             message: "Email sent"

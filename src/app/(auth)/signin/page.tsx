@@ -23,6 +23,7 @@ import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { Fascinate } from "next/font/google";
 import { Loader2 } from "lucide-react";
+import Link from "next/link";
 
 function page() {
   const [isLoading, setIsLoading] = useState(false)
@@ -135,6 +136,14 @@ function page() {
             
           </form>
         </Form>
+        <div className="text-center mt-4">
+          <p>
+            Not a member yet?{' '}
+            <Link href="/signup" className="text-blue-600 hover:text-blue-800">
+              Sign up
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
