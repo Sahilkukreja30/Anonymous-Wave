@@ -4,13 +4,11 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { messageSchema } from "@/schemas/messageSchema";
@@ -21,11 +19,6 @@ import { Loader2 } from "lucide-react";
 import { useParams } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-import {useCompletion} from 'ai/react'
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import Link from "next/link";
 const page = () => {
   const [message, setMessage] = useState("");
   const [isLoading,setIsLoading] = useState(false)

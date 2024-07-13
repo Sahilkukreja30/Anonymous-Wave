@@ -4,10 +4,7 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
-import Image from "next/image";
 import messagesInfo from "@/messages.json";
 import Autoplay from "embla-carousel-autoplay";
 import { Mail } from "lucide-react";
