@@ -21,7 +21,7 @@ import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 
-function page() {
+function Page() {
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
   const {toast} = useToast()
@@ -145,4 +145,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

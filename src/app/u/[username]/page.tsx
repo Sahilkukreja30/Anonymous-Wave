@@ -19,7 +19,7 @@ import { Loader2 } from "lucide-react";
 import { useParams } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-const page = () => {
+const Page = () => {
   const [message, setMessage] = useState("");
   const [isLoading,setIsLoading] = useState(false)
   const { toast } = useToast();
@@ -108,4 +108,4 @@ const page = () => {
   );
 };
 
-export default page
+export default Page
