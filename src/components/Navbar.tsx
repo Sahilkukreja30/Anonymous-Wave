@@ -29,9 +29,14 @@ const Navbar = () => {
           <span className="mr-4">
             Welcome, {user?.username || user?.email}
           </span>
+          <div className=' flex gap-2'>
+          <Button className="w-full md:w-auto bg-slate-100 text-black" variant='outline'>
+            <Link href={"/dashboard"}>Dashboard</Link>
+          </Button>
           <Button onClick={onLogout} className="w-full md:w-auto bg-slate-100 text-black" variant='outline'>
             Logout
           </Button>
+          </div>
         </>
       ) : (
         <>
