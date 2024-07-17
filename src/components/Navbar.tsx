@@ -19,31 +19,35 @@ const Navbar = () => {
       })
     }
   return (
-    <div className="navbar border-1 shadow-sm bg-gray-900">
-    <div className="flex-1">
-      <Link href={"/"} className="btn btn-ghost text-white text-xl">Anonymous Wave</Link>
+    <nav className="p-4 md:p-5 shadow-md bg-gray-900 text-white">
+    <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
+      <a href="#" className="text-xl font-bold mb-4 md:mb-0">
+        Anonymous Wave
+      </a>
+      {session ? (
+        <>
+          <span className="mr-4">
+            Welcome, {user?.username || user?.email}
+          </span>
+          <Button onClick={onLogout} className="w-full md:w-auto bg-slate-100 text-black" variant='outline'>
+            Logout
+          </Button>
+        </>
+      ) : (
+        <>
+        <div>
+        <Link href="/signin">
+          <Button className="w-full md:w-auto bg-slate-100 text-black mr-2" variant={'ghost'}>Login</Button>
+        </Link>
+        <Link href="/signup">
+        <Button className="w-full md:w-auto bg-slate-100 text-black" variant={'ghost'}>Sign Up</Button>
+      </Link>
+        </div>
+      </>
+      )}
     </div>
-    <div className="flex px-1">
-      <ul className="flex gap-4">
-        <li className=''>{session ? 
-            <>
-              <span className="mr-80 text-white">
-              Welcome, {user?.username || user?.email}
-              </span>
-              <Link href={"/dashboard"} className="rounded-t-none p-2 btn text-white text-xl btn-ghost">Dashboard</Link> 
-              <Button onClick={onLogout} className="mx-2">Logout</Button>
-            </>
-            : 
-            <>
-              <Button size={"sm"}>
-                <Link href={"/signin"} className='text-[1rem]'>Login</Link>
-              </Button>
-                          
-            </>}</li>
-      </ul>
-    </div>
-    </div>
-  )
+  </nav>
+);
 }
 
 export default Navbar
