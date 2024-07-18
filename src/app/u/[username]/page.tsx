@@ -19,7 +19,32 @@ import { Loader2 } from "lucide-react";
 import { useParams } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useCompletion } from 'ai/react'
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
+
+const specialChar = '||';
+
+const parseStringMessages = (messageString: string): string[] => {
+  return messageString.split(specialChar);
+};
+
+const initialMessageString =
+  "What's your favorite movie?||Do you have any pets?||What's your dream job?";
+
+
+
 const Page = () => {
+  const {
+    complete,
+    completion,
+    isLoading: isSuggestLoading,
+    error,
+  } = useCompletion({
+    api: '/api/suggest-message',
+    initialCompletion: initialMessageString,
+  });
   const [message, setMessage] = useState("");
   const [isLoading,setIsLoading] = useState(false)
   const { toast } = useToast();
@@ -29,7 +54,8 @@ const Page = () => {
   });
   const username = params.username;
 
-  
+  const messageContent = form.watch('content');
+
 
   const onSubmit = async (data: any) => {
     setIsLoading(true);
@@ -56,6 +82,17 @@ const Page = () => {
       setIsLoading(false);
     }
   };
+
+  const fetchSuggestedMessages = async () => {
+    try {
+      complete('');
+    } catch (error) {
+      console.error('Error fetching messages:', error);
+      console.log("Error occured");
+      
+    }
+  };
+
   const handleMessageClick = (message: string) => {
     form.setValue('content', message);
   };
@@ -103,6 +140,39 @@ const Page = () => {
           </div>
         </form>
       </Form>
+      </div>
+      <div className="space-y-4 my-8">
+        <div className="space-y-2">
+          <p>Click on any message below to select it.</p>
+        </div>
+        <Card>
+          <CardHeader>
+            <h3 className="text-xl font-semibold">Messages</h3>
+          </CardHeader>
+          <CardContent className="flex flex-col space-y-4">
+            {error ? (
+              <p className="text-red-500">{error.message}</p>
+            ) : (
+              parseStringMessages(completion).map((message, index) => (
+                <Button
+                  key={index}
+                  variant="outline"
+                  className="mb-2"
+                  onClick={() => handleMessageClick(message)}
+                >
+                  {message}
+                </Button>
+              ))
+            )}
+          </CardContent>
+        </Card>
+      </div>
+      <Separator className="my-6" />
+      <div className="text-center">
+        <div className="mb-4">Get Your Message Board</div>
+        <Link href={'/sign-up'}>
+          <Button>Create Your Account</Button>
+        </Link>
       </div>
     </div>
   );
