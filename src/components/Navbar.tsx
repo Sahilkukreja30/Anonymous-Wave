@@ -33,7 +33,7 @@ const Navbar = () => {
           <Button className="w-full md:w-auto bg-slate-100 text-black" variant='outline'>
             <Link href={"/dashboard"}>Dashboard</Link>
           </Button>
-          <Button onClick={onLogout} className="w-full md:w-auto bg-slate-100 text-black" variant='outline'>
+          <Button onClick={onLogout} className="w-full md:w-auto bg-red-600 text-white" variant='outline'>
             Logout
           </Button>
           </div>
@@ -45,7 +45,7 @@ const Navbar = () => {
           <Button className="w-full md:w-auto bg-slate-100 text-black mr-2" variant={'ghost'}>Login</Button>
         </Link>
         <Link href="/signup">
-        <Button className="w-full md:w-auto bg-slate-100 text-black" variant={'ghost'}>Sign Up</Button>
+        <Button className="w-full md:w-auto  text-white bg-green-500" variant={'ghost'}>Sign Up</Button>
       </Link>
         </div>
       </>
